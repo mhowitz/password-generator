@@ -1,6 +1,3 @@
-// Assignment Code
-// Generator funcitons - http.net-comber.com/charset.html
-window.alert("Welcome to the password generator!");
 
 var generateBtn = document.querySelector("#generate");
 
@@ -12,76 +9,67 @@ function writePassword() {
   passwordText.value = password;
 
 }
+//assigning variables to different characters
+var lower = 'abcdefghijklmnopqrstuvwxyz';
+var upper = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+var symbol =  '!@#$%^&*.+=-_';
+var num = '0123456789';
+var passForm = document.querySelector('#pass-length');
 
-passwordText = {
-  lower: randomLower,
-  upper: randomUpper,
-  symbol: randomSymbol,
-  number: randomNum
+generateBtn.addEventListener("click", writePassword);
+
+
+var generatePassword = function () {
+  //ask the user how many characters they want in their password
+  var passLength = document.querySelector("input[name='passLength']").value;
+  if (passLength < 7 || passLength > 129 || passLength === "") {
+    return "Please enter a number between 8 and 128.";
+  };
+  console.log(passLength);
+
+  //set the password to empty before prompts are asked
+  var initialPassword = '';
+
+  //prompts that ask what characters they would like in their password
+  var lowerConfirm = window.confirm("Would you like lowercase letters in your password?");
+  if (lowerConfirm) {
+    // the += means that if the prompt is confirmed that lowercase letters are true and will be added to the password
+    initialPassword += lower;
+    console.log("lower yes!");
+  }
+  var upperConfirm = window.confirm("Would you like uppercase letters in your password?");
+  if (upperConfirm) {
+    initialPassword += upper;
+    console.log("upper yes");
+  };
+
+  var numConfirm = window.confirm("Would you like numbers in your password?");
+  if (numConfirm) {
+    initialPassword += num;
+    console.log("number yes");
+  }
+  var symbolConfirm = window.confirm("Would you like symbols in your password?");
+  if (symbolConfirm) {
+    initialPassword += symbol;
+    console.log("symbol yes");
+  }
+  if(!lowerConfirm && !upperConfirm && !numConfirm && !symbolConfirm) {
+    alert("You need to select at least one character to create a valid password!");
+    return "Try again!";
+  }
+
+  password = "";
+
+  for (var i = 0; i < passLength; i++) {
+    randomPass = Math.floor(Math.random()* initialPassword.length);
+    password += initialPassword[randomPass];
+  }
+  console.log(password);
+  return password;
 };
 
 
-var generatePassword = function() {
-//choose length in between 8 and 128 characters
-//asking user to input the desired length of password
-  var passLength = window.prompt("How long would you like your password to be? Please choose a number between 8 and 128 characters.");
-    if (passLength < 8 || passLength > 128 || passLength === "") {
-      window.prompt("Please choose a number between 8 and 128.");
-      generatePassword();
-    };
-  
-  var lowerConfirm = window.confirm("Would you like lowercase letters in your password?");
-    if(lowerConfirm) {
-      randomLower();
-    };
-
-  var upperConfirm = window.confirm("Would you like uppercase letters in your password?");
-    if(upperConfirm) {
-      randomUpper();
-    };
-  
-  var numConfirm = window.confirm("Would you like numbers in your password?");
-    if(numConfirm) {
-      randomNum();
-    }
-  var symbolConfirm = window.confirm("Would you like symbols in your password?");
-    if(symbolConfirm) {
-      randomSymbol();
-    }
-
-}
-//character types: lowercase, uppercase, numeric, and/or special characters
-
-//random lowercase letter
-var randomLower = function() {
-  return String.fromCharCode(Math.floor(Math.random()*26) +97);
-  console.log(randomLower);
-}
-//random Uppercase letter
-var randomUpper = function() {
-  return String.fromCharCode(Math.floor(Math.random()*26) +65);
-}
-//random symbols 
-
-var randomSymbol = function() {
-  var symbols = "!@#$%^&*.+=-_";
-  return symbols[Math.floor(Math.random()* symbols.length)];
-}
-var randomNum = function() {
-  var numbers = '0123456789';
-  return numbers[Math.floor(Math.random()*numbers.length)];
-}
 
 
 
-//at least one character type should be validated once all prompts are answered
-//a password is generated that matches selected criteria
-//the passwor is either displayed in alert or written to the page 
-/*
-*/
 
-
-// Add event listener to generate button
-
-
-generateBtn.addEventListener("click", writePassword);
