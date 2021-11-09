@@ -5,6 +5,8 @@ https://mhowitz.github.io/password-generator/
 
 This project was created so that a user who deploys this website can generate a random password with their desired length and characters. The user is allowed to choose between lowercase letters, uppercase letters, symbols, and numbers. They are requuired to have a password length in between 8 and 128 characters and must choose at least one character option. 
 
+I built this project to learn more about JavaScript. It helped me grasp the concepts of functions, variables, the DOM, and for loops. 
+
 The majority of this project was created using JavaScript. I had to tackle quite a few issues in order to complete this project. One was if I should create a function for each of the character options. I decided the most efficient method was do assign each character to a variable. I also had trouble getting the password length property to work, so I created a text box for the user to submit a number for how long they wanted their password to be rather than a window.prompt() where the input is a string. I spent a lot of time deciding if I wanted to keep the password generator function in one function or separate it into multiple. Once I gain more experience with JavaScript, I might find more efficient ways to solve these issues, but I was able to create a working password generator in the end.  
 
 
